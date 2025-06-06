@@ -83,20 +83,6 @@
         "contactEmail": "contact@ipsumlorem.com",
         "contactPhone": "555-555-5555"
       }
-    },
-    {
-      "id": "c3bb",
-      "type": "Full-Time",
-      "title": "test job list name",
-      "description": "test desc",
-      "location": "Klang, Selangor, MYS",
-      "salary": "$150K - $175K",
-      "company": {
-        "name": "test com name",
-        "description": "test com desc",
-        "contactEmail": "test@123.com",
-        "contactPhone": "212121222222"
-      }
     }
   ]
 }
