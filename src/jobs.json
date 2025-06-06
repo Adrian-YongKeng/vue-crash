@@ -85,34 +85,6 @@
       }
     },
     {
-      "id": "bd7f",
-      "type": "Full-Time",
-      "title": "tets job lisitng name",
-      "description": "test desccc",
-      "location": "Klang, Selangor, MYS",
-      "salary": "$80K - $90K",
-      "company": {
-        "name": "test com name",
-        "description": "test com  desc",
-        "contactEmail": "test@123.com",
-        "contactPhone": "212121222222"
-      }
-    },
-    {
-      "id": "13f8",
-      "type": "Full-Time",
-      "title": "test lisitng name",
-      "description": "test descripotion",
-      "location": "Klang, Selangor, MYS",
-      "salary": "$125K - $150K",
-      "company": {
-        "name": "test com name",
-        "description": "test com name",
-        "contactEmail": "test@123.com",
-        "contactPhone": "212121222222"
-      }
-    },
-    {
       "id": "c3bb",
       "type": "Full-Time",
       "title": "test job list name",
