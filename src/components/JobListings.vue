@@ -5,9 +5,14 @@
         Browse Jobs
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <JobListing
-          v-for="job in jobs.slice(0, limit || jobs.length)"
+      <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
+        <PulseLoader />
+      </div>
+
+      <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- v-for="job in jobs.slice(0, limit || jobs.length)" -->
+        <JobCard
+          v-for="job in state.jobs.slice(0, limit || state.jobs.length)"
           :key="job.id"
           :job="job"
         />
@@ -25,9 +30,11 @@
 </template>
 
 <script setup>
-import { ref, defineProps } from "vue";
-import jobData from "@/jobs.json";
-import JobListing from "./JobListing.vue";
+import { ref, defineProps, onMounted, reactive } from "vue";
+import axios from "axios";
+// import jobData from "@/jobs.json";
+import JobCard from "./JobCard.vue";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 defineProps({
   limit: Number,
@@ -37,7 +44,29 @@ defineProps({
   },
 });
 
-const jobs = ref(jobData);
-console.log(jobs.value);
+// const jobs = ref(jobData);
+// console.log(jobs.value);
+
+// const jobs = ref([]); //like a different useState to each field - .value
+
+const state = reactive({
+  // bring in an object (state object)
+  //single object that has each field inside - state.
+  jobs: [],
+  isLoading: true,
+});
+
+onMounted(async () => {
+  try {
+    const response = await axios.get("/api/jobs");
+    // jobs.value = response.data;
+
+    state.jobs = response.data;
+  } catch (error) {
+    console.error("Error fetching jobs", error);
+  } finally {
+    state.isLoading = false;
+  }
+});
 </script>
 
