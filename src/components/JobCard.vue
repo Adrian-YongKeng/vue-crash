@@ -3,6 +3,7 @@
     <div class="p-4">
       <div class="mb-6">
         <div class="text-gray-600 my-2">{{ job.type }}</div>
+
         <h3 class="text-xl font-bold">{{ job.title }}</h3>
       </div>
 
@@ -10,10 +11,9 @@
         <div>
           {{ truncatedDescription }}
         </div>
-        <button
-          @click="toggleFullDesc"
-          class="text-green-500 hover:text-green-600 mb-5"
-        >
+
+        <!-- prettier-ignore -->
+        <button @click="toggleFullDesc" class="text-green-500 hover:text-green-600 mb-5">
           {{ showFullDescription ? "Less" : "More" }}
         </button>
       </div>

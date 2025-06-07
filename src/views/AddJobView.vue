@@ -8,9 +8,8 @@
           <h2 class="text-3xl text-center font-semibold mb-6">Add Job</h2>
 
           <div class="mb-4">
-            <label for="type" class="block text-gray-700 font-bold mb-2"
-              >Job Type</label
-            >
+            <!-- prettier-ignore -->
+            <label for="type" class="block text-gray-700 font-bold mb-2">Job Type</label>
 
             <select
               v-model="form.type"
@@ -27,9 +26,8 @@
           </div>
 
           <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2"
-              >Job Listing Name</label
-            >
+            <!-- prettier-ignore -->
+            <label class="block text-gray-700 font-bold mb-2">Job Listing Name</label>
 
             <input
               v-model="form.title"
@@ -43,9 +41,8 @@
           </div>
 
           <div class="mb-4">
-            <label for="description" class="block text-gray-700 font-bold mb-2"
-              >Description</label
-            >
+            <!-- prettier-ignore -->
+            <label for="description" class="block text-gray-700 font-bold mb-2">Description</label>
 
             <textarea
               v-model="form.description"
@@ -58,9 +55,8 @@
           </div>
 
           <div class="mb-4">
-            <label for="type" class="block text-gray-700 font-bold mb-2"
-              >Salary</label
-            >
+            <!-- prettier-ignore -->
+            <label for="type" class="block text-gray-700 font-bold mb-2">Salary</label>
 
             <select
               v-model="form.salary"
@@ -84,7 +80,7 @@
           </div>
 
           <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2"> Location </label>
+            <label class="block text-gray-700 font-bold mb-2">Location</label>
 
             <input
               v-model="form.location"
@@ -100,9 +96,8 @@
           <h3 class="text-2xl mb-5">Company Info</h3>
 
           <div class="mb-4">
-            <label for="company" class="block text-gray-700 font-bold mb-2"
-              >Company Name</label
-            >
+            <!-- prettier-ignore -->
+            <label for="company" class="block text-gray-700 font-bold mb-2">Company Name</label>
 
             <input
               v-model="form.company.name"
@@ -115,11 +110,8 @@
           </div>
 
           <div class="mb-4">
-            <label
-              for="company_description"
-              class="block text-gray-700 font-bold mb-2"
-              >Company Description</label
-            >
+            <!-- prettier-ignore -->
+            <label for="company_description" class="block text-gray-700 font-bold mb-2" >Company Description</label>
 
             <textarea
               v-model="form.company.description"
@@ -132,11 +124,8 @@
           </div>
 
           <div class="mb-4">
-            <label
-              for="contact_email"
-              class="block text-gray-700 font-bold mb-2"
-              >Contact Email</label
-            >
+            <!-- prettier-ignore -->
+            <label for="contact_email" class="block text-gray-700 font-bold mb-2" >Contact Email</label>
 
             <input
               v-model="form.company.contactEmail"
@@ -150,11 +139,8 @@
           </div>
 
           <div class="mb-4">
-            <label
-              for="contact_phone"
-              class="block text-gray-700 font-bold mb-2"
-              >Contact Phone</label
-            >
+            <!-- prettier-ignore -->
+            <label for="contact_phone" class="block text-gray-700 font-bold mb-2" >Contact Phone</label>
 
             <input
               v-model="form.company.contactPhone"
