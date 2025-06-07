@@ -8,6 +8,7 @@
           <p class="mt-2 mb-4">
             Browse our Vue jobs and start your career today
           </p>
+
           <router-link
             to="/jobs"
             class="inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700"
@@ -18,9 +19,11 @@
 
         <Card bg="bg-green-100">
           <h2 class="text-2xl font-bold">For Employers</h2>
+
           <p class="mt-2 mb-4">
             List your job to find the perfect developer for the role
           </p>
+
           <router-link
             to="/job/add"
             class="inline-block bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600"

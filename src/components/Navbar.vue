@@ -18,6 +18,7 @@
               <!-- build in active class
                 active-class="bg-green-900" class="text-white rounded-md px-3 py-2
                 hover:bg-gray-900 hover:text-white" -->
+
               <!-- prettier-ignore -->
               <router-link to="/" active-class="bg-green-900" :class="[isActiveLink('/') ? 'bg-green-900': 'hover:bg-gray-900 hover:text-white','text-white ', 'rounded-md', 'px-3', 'py-2']" >Home</router-link>
               <!-- prettier-ignore -->
