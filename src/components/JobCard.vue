@@ -1,3 +1,26 @@
+<script setup>
+import { ref, computed, defineProps } from "vue";
+
+const props = defineProps({
+  job: Object,
+});
+
+const showFullDescription = ref(false);
+
+const toggleFullDesc = () => {
+  showFullDescription.value = !showFullDescription.value;
+};
+
+const truncatedDescription = computed(() => {
+  let description = props.job.description;
+
+  if (!showFullDescription.value) {
+    description = description.substring(0, 90) + "...";
+  }
+  return description;
+});
+</script>
+
 <template>
   <div class="bg-white rounded-xl shadow-md relative">
     <div class="p-4">
@@ -38,27 +61,4 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref, computed, defineProps } from "vue";
-
-const props = defineProps({
-  job: Object,
-});
-
-const showFullDescription = ref(false);
-
-const toggleFullDesc = () => {
-  showFullDescription.value = !showFullDescription.value;
-};
-
-const truncatedDescription = computed(() => {
-  let description = props.job.description;
-
-  if (!showFullDescription.value) {
-    description = description.substring(0, 90) + "...";
-  }
-  return description;
-});
-</script>
 

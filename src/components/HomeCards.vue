@@ -1,3 +1,8 @@
+<script setup>
+import Card from "@/components/Card.vue";
+</script>
+
+
 <template>
   <section class="py-4">
     <div class="container-xl lg:container m-auto">
@@ -35,8 +40,4 @@
     </div>
   </section>
 </template>
-
-<script setup>
-import Card from "@/components/Card.vue";
-</script>
 

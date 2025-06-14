@@ -1,3 +1,46 @@
+<script setup>
+import axios from "axios";
+import { onMounted, reactive } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import router from "@/router";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
+import BackButton from "@/components/BackButton.vue";
+import { useToast } from "vue-toastification";
+
+const route = useRoute();
+const jobId = route.params.id;
+const toast = useToast();
+const state = reactive({
+  job: {},
+  isLoading: true,
+});
+
+const deleteJob = async () => {
+  try {
+    const confirm = window.confirm("Are you sure you want to delete this job?");
+    if (confirm) {
+      await axios.delete(`/api/jobs/${jobId}`);
+      toast.success("Job Deleted Successfully");
+      router.push("/jobs");
+    }
+  } catch (error) {
+    console.error("Error deleting job", error);
+    toast.error("Job Not Deleted");
+  }
+};
+
+onMounted(async () => {
+  try {
+    const response = await axios.get(`/api/jobs/${jobId}`);
+    state.job = response.data;
+  } catch (error) {
+    console.error("Error fetching job", error);
+  } finally {
+    state.isLoading = false;
+  }
+});
+</script>
+
 <template>
   <BackButton />
 
@@ -90,46 +133,4 @@
   </div>
 </template>
 
-<script setup>
-import axios from "axios";
-import { onMounted, reactive } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import router from "@/router";
-import PulseLoader from "vue-spinner/src/PulseLoader.vue";
-import BackButton from "@/components/BackButton.vue";
-import { useToast } from "vue-toastification";
-
-const route = useRoute();
-const jobId = route.params.id;
-const toast = useToast();
-const state = reactive({
-  job: {},
-  isLoading: true,
-});
-
-const deleteJob = async () => {
-  try {
-    const confirm = window.confirm("Are you sure you want to delete this job?");
-    if (confirm) {
-      await axios.delete(`/api/jobs/${jobId}`);
-      toast.success("Job Deleted Successfully");
-      router.push("/jobs");
-    }
-  } catch (error) {
-    console.error("Error deleting job", error);
-    toast.error("Job Not Deleted");
-  }
-};
-
-onMounted(async () => {
-  try {
-    const response = await axios.get(`/api/jobs/${jobId}`);
-    state.job = response.data;
-  } catch (error) {
-    console.error("Error fetching job", error);
-  } finally {
-    state.isLoading = false;
-  }
-});
-</script>
 

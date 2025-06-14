@@ -1,3 +1,87 @@
+<script setup>
+import { onMounted, reactive } from "vue";
+import axios from "axios";
+import { useRoute, useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
+
+const route = useRoute();
+const router = useRouter();
+const jobId = route.params.id;
+const toast = useToast();
+
+const form = reactive({
+  type: "Full-Time",
+  title: "",
+  description: "",
+  salary: "",
+  location: "",
+  company: {
+    name: "",
+    description: "",
+    contactEmail: "",
+    contactPhone: "",
+  },
+});
+
+const state = reactive({
+  job: {},
+  isLoading: true,
+});
+
+const handleSubmit = async () => {
+  const updatedJob = {
+    type: form.type,
+    title: form.title,
+    description: form.description,
+    location: form.location,
+    salary: form.salary,
+    company: {
+      name: form.company.name,
+      description: form.company.description,
+      contactEmail: form.company.contactEmail,
+      contactPhone: form.company.contactPhone,
+    },
+  };
+  //  console.log(newJob);
+
+  try {
+    const response = await axios.put(`/api/jobs/${jobId}`, updatedJob);
+
+    toast.success("Job Updated Successfully");
+
+    router.push(`/jobs/${response.data.id}`);
+  } catch (error) {
+    console.error("Error fetching job", error);
+
+    toast.error("Job Was Not Updated");
+  }
+};
+
+onMounted(async () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  try {
+    const response = await axios.get(`/api/jobs/${jobId}`);
+    state.job = response.data;
+
+    //Populate input
+    form.type = state.job.type;
+    form.title = state.job.title;
+    form.description = state.job.description;
+    form.location = state.job.location;
+    form.salary = state.job.salary;
+    form.company.name = state.job.company.name;
+    form.company.description = state.job.company.description;
+    form.company.contactEmail = state.job.company.contactEmail;
+    form.company.contactPhone = state.job.company.contactPhone;
+  } catch (error) {
+    console.error("Error fetching job", error);
+  } finally {
+    state.isLoading = false;
+  }
+});
+</script>
+        
 <template>
   <section class="bg-green-50">
     <div class="container m-auto max-w-2xl py-24">
@@ -165,89 +249,5 @@
     </div>
   </section>
 </template>
-  
-<script setup>
-import { onMounted, reactive } from "vue";
-import axios from "axios";
-import { useRoute, useRouter } from "vue-router";
-import { useToast } from "vue-toastification";
-
-const route = useRoute();
-const router = useRouter();
-const jobId = route.params.id;
-const toast = useToast();
-
-const form = reactive({
-  type: "Full-Time",
-  title: "",
-  description: "",
-  salary: "",
-  location: "",
-  company: {
-    name: "",
-    description: "",
-    contactEmail: "",
-    contactPhone: "",
-  },
-});
-
-const state = reactive({
-  job: {},
-  isLoading: true,
-});
-
-const handleSubmit = async () => {
-  const updatedJob = {
-    type: form.type,
-    title: form.title,
-    description: form.description,
-    location: form.location,
-    salary: form.salary,
-    company: {
-      name: form.company.name,
-      description: form.company.description,
-      contactEmail: form.company.contactEmail,
-      contactPhone: form.company.contactPhone,
-    },
-  };
-  //  console.log(newJob);
-
-  try {
-    const response = await axios.put(`/api/jobs/${jobId}`, updatedJob);
-
-    toast.success("Job Updated Successfully");
-
-    router.push(`/jobs/${response.data.id}`);
-  } catch (error) {
-    console.error("Error fetching job", error);
-
-    toast.error("Job Was Not Updated");
-  }
-};
-
-onMounted(async () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-
-  try {
-    const response = await axios.get(`/api/jobs/${jobId}`);
-    state.job = response.data;
-
-    //Populate input
-    form.type = state.job.type;
-    form.title = state.job.title;
-    form.description = state.job.description;
-    form.location = state.job.location;
-    form.salary = state.job.salary;
-    form.company.name = state.job.company.name;
-    form.company.description = state.job.company.description;
-    form.company.contactEmail = state.job.company.contactEmail;
-    form.company.contactPhone = state.job.company.contactPhone;
-  } catch (error) {
-    console.error("Error fetching job", error);
-  } finally {
-    state.isLoading = false;
-  }
-});
-</script>
   
   

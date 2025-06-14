@@ -1,3 +1,55 @@
+<script setup>
+import { reactive } from "vue";
+import axios from "axios";
+import router from "@/router";
+import { useToast } from "vue-toastification";
+
+const form = reactive({
+  type: "Full-Time",
+  title: "",
+  description: "",
+  salary: "",
+  location: "",
+  company: {
+    name: "",
+    description: "",
+    contactEmail: "",
+    contactPhone: "",
+  },
+});
+
+const toast = useToast();
+
+const handleSubmit = async () => {
+  const newJob = {
+    type: form.type,
+    title: form.title,
+    description: form.description,
+    location: form.location,
+    salary: form.salary,
+    company: {
+      name: form.company.name,
+      description: form.company.description,
+      contactEmail: form.company.contactEmail,
+      contactPhone: form.company.contactPhone,
+    },
+  };
+  //   console.log(newJob);
+
+  try {
+    const response = await axios.post(`/api/jobs`, newJob);
+
+    toast.success("Job Added Successfully");
+
+    router.push(`/jobs/${response.data.id}`);
+  } catch (error) {
+    console.error("Error fetching job", error);
+
+    toast.error("Job Was Not Added");
+  }
+};
+</script>
+
 <template>
   <section class="bg-green-50">
     <div class="container m-auto max-w-2xl py-24">
@@ -165,56 +217,3 @@
     </div>
   </section>
 </template>
-
-<script setup>
-import { reactive } from "vue";
-import axios from "axios";
-import router from "@/router";
-import { useToast } from "vue-toastification";
-
-const form = reactive({
-  type: "Full-Time",
-  title: "",
-  description: "",
-  salary: "",
-  location: "",
-  company: {
-    name: "",
-    description: "",
-    contactEmail: "",
-    contactPhone: "",
-  },
-});
-
-const toast = useToast();
-
-const handleSubmit = async () => {
-  const newJob = {
-    type: form.type,
-    title: form.title,
-    description: form.description,
-    location: form.location,
-    salary: form.salary,
-    company: {
-      name: form.company.name,
-      description: form.company.description,
-      contactEmail: form.company.contactEmail,
-      contactPhone: form.company.contactPhone,
-    },
-  };
-  //   console.log(newJob);
-
-  try {
-    const response = await axios.post(`/api/jobs`, newJob);
-
-    toast.success("Job Added Successfully");
-
-    router.push(`/jobs/${response.data.id}`);
-  } catch (error) {
-    console.error("Error fetching job", error);
-
-    toast.error("Job Was Not Added");
-  }
-};
-</script>
-

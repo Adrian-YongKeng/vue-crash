@@ -1,11 +1,4 @@
-<template>
-  <!-- v-bind:class -->
-  <div :class="`${bg} p-6 rounded-lg shadow-md`">
-    <slot></slot>
-  </div>
-</template>
-
-<script setup>
+  <script setup>
 import { defineProps } from "vue";
 
 defineProps({
@@ -15,3 +8,11 @@ defineProps({
   },
 });
 </script>
+    
+<template>
+  <!-- v-bind:class -->
+  <div :class="`${bg} p-6 rounded-lg shadow-md`">
+    <slot></slot>
+  </div>
+</template>
+

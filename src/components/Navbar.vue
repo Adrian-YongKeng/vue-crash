@@ -1,3 +1,14 @@
+<script setup>
+import { useRoute } from "vue-router";
+// import { RouterLInk } from "vue-router";
+import logo from "@/assets/img/logo.png";
+
+const isActiveLink = (routePath) => {
+  const route = useRoute();
+  return route.path === routePath;
+};
+</script>
+
 <template>
   <nav class="bg-green-700 border-b border-green-500">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -32,15 +43,4 @@
     </div>
   </nav>
 </template>
-
-<script setup>
-import { useRoute } from "vue-router";
-// import { RouterLInk } from "vue-router";
-import logo from "@/assets/img/logo.png";
-
-const isActiveLink = (routePath) => {
-  const route = useRoute();
-  return route.path === routePath;
-};
-</script>
 
